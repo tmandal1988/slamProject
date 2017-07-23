@@ -11,7 +11,7 @@ function [y, Y_p] = scan (p)
 
 px = p(1);
 py = p(2);
-d = sqrt(pxˆ2+pyˆ2);
+d = sqrt(px^2+py^2);
 a = atan2(py,px);
 % a = atan(py/px); % use this line if you are in symbolic mode.
 y = [d;a];

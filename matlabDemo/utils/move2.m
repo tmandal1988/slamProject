@@ -27,9 +27,9 @@ end
 dp = [dx;0];
 
 if nargout == 1 % No Jacobians requested
-    to = fromFrame(r, dp);
+    to = fromFrame2D(r, dp);
 else %Jacobians requested
-    [to, TO_r, TO_dt] = fromFrame(r, dp);
+    [to, TO_r, TO_dt] = fromFrame2D(r, dp);
     AO_a = 1;
     AO_da = 1;
     RO_r = [TO_r ; 0 0 AO_a];

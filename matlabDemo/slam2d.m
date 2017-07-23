@@ -83,16 +83,16 @@ for t = 1:200
     
     % 1. Simulator
     n = q.*randn(2,1);
-    R = move(R, u, zeros(2,1));
+    R = move2(R, u, zeros(2,1));
     for lid = 1:size(W,2)
         v = m.*randn(2,1);
-        y(:,lid) = project(R, W(:,lid)) + v;
+        y(:,lid) = project2(R, W(:,lid)) + v;
     end
     
     % 2. Filter
     %   a. Prediction
     %   CAUTION this is sub-optimal in CPU time
-    [x(r), R_r, R_n] = move(x(r), u, n);
+    [x(r), R_r, R_n] = move2(x(r), u, n);
     P_rr = P(r,r);
     P(r,:) = R_r*P(r,:);
     P(:,r) = P(r,:)';
@@ -103,7 +103,7 @@ for t = 1:200
     lids = find(l(1,:));
     for lid = lids
         % expectation
-        [e, E_r, E_l] = project(x(r), x(l(:,lid)));
+        [e, E_r, E_l] = project2(x(r), x(l(:,lid)));
         E_rl = [E_r E_l];
         rl   = [r l(:,lid)'];
         E    = E_rl * P(rl,rl) * E_rl';
